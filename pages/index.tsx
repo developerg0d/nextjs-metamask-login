@@ -1,7 +1,14 @@
+import { useEthers } from "@usedapp/core";
 import type { NextPage } from "next";
 import Head from "next/head";
 
 const Home: NextPage = () => {
+  const { activateBrowserWallet, account } = useEthers();
+
+  function ConnectMetaMask() {
+    activateBrowserWallet();
+  }
+
   return (
     <div>
       <Head>
@@ -27,6 +34,7 @@ const Home: NextPage = () => {
             fontWeight: "900",
             cursor: "pointer",
           }}
+          onClick={ConnectMetaMask}
         >
           Connect
         </button>
