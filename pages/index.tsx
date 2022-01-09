@@ -9,6 +9,18 @@ const Home: NextPage = () => {
     activateBrowserWallet();
   }
 
+  function SliceAddress(): string {
+    const walletAddress = account?.toString();
+    if (!walletAddress) {
+      return "";
+    }
+    const slicedAddressFirst = account?.toString().slice(0, 5);
+    const slicedAddressLast = account
+      ?.toString()
+      .slice(walletAddress.length - 4, walletAddress.length);
+    return `${slicedAddressFirst}...${slicedAddressLast}`;
+  }
+
   return (
     <div>
       <Head>
@@ -25,19 +37,23 @@ const Home: NextPage = () => {
         }}
       >
         <h1>MetaMask Login</h1>
-        <button
-          style={{
-            background: "white",
-            color: "black",
-            border: "none",
-            padding: "10px",
-            fontWeight: "900",
-            cursor: "pointer",
-          }}
-          onClick={ConnectMetaMask}
-        >
-          Connect
-        </button>
+        {account === undefined ? (
+          <button
+            style={{
+              background: "white",
+              color: "black",
+              border: "none",
+              padding: "10px",
+              fontWeight: "900",
+              cursor: "pointer",
+            }}
+            onClick={ConnectMetaMask}
+          >
+            Connect
+          </button>
+        ) : (
+          <h2>{SliceAddress()}</h2>
+        )}
       </main>
     </div>
   );
