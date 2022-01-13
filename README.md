@@ -1,34 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a NextJs based metamask web3 login project to allow users to login with their metamask.
 
-## Getting Started
+The app can then retrieve the wallet address and perform various actions from that address.
 
-First, run the development server:
+---
+
+> Social Media
+
+[Youtube](https://www.youtube.com/channel/UCNSVBipVk4ocQrcXCixxGtA), [Twitter](https://twitter.com/developerg0d), [Tiktok](https://www.tiktok.com/@developerg0d) & [Instagram](https://instagram.com/developerg0d) - **@developerg0d**
+
+**Support my projects :^)** - [Buy me a Coffee](https://www.buymeacoffee.com/developerg0d) <3
+
+---
+
+## To test out
+
+_Have a browser logged into MetaMask_
 
 ```bash
-npm run dev
-# or
-yarn dev
+1) npm install
+2) npm run dev
+3) head to > http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Written Tutorial
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Requirements:
+- NextJs (or React) Knowledge
+- MetaMask Wallet
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### 1)
+Run the command:
+```
+npx create-next-app@latest --ts
+```
+This will create a NextJs app with the latest version of NextJs with all the boilerplate code being in TypeScript.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### 2) 
 
-## Learn More
+Remove all the boilerplate code; 
 
-To learn more about Next.js, take a look at the following resources:
+This includes unused css & HTML that we need to remove so we can have a clean state to work with.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3)  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+We then add a button with css to the index.tsx file and update the global css with some changes to make the application full screen with our version of simple dark mode.
 
-## Deploy on Vercel
+### 4) 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Then run the command
+```
+npm install @usedapp/core
+```
+This will allow us to import the required functions to interact with MetaMask and retrieve various data post login.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+We when enclose our Component within DApp Provider which provides service for a DApp: https://usedapp.readthedocs.io/en/latest/core.html
+
+As well as enclosing the rest within React.StrictMode which is a tool for highlighting potential problems:
+
+https://reactjs.org/docs/strict-mode.html
+
+Now add a ConnectMetamask function that calls activate browser wallet (this will specifically interact with MetaMask).
+
+### 5) 
+
+Add a Slice Address function to cut up the wallet address.
+
+This works by utilizing the String prototype function of **Slice** to allow us to exract section of the wallet address and then combine it using back-ticks (\` \`)
+
+### 6)
+
+We can now run the app and login with our MetaMask! :)
